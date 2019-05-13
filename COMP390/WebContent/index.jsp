@@ -7,9 +7,33 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% 
-response.sendRedirect("StudentLogin.jsp");
 
-%>
-</body>
+<div class = "row">
+
+<div class="col-sm-3">
+
+
+<form action="LoginAsStudent">
+
+<input type="submit" value="LOGIN AS STUDENT">
+
+
+</form>
+
+</div>
+
+<div class="col-sm-3">
+
+
+<form action="AddStudent">
+
+<input type="submit" value="ADD NEW STUDENT">
+
+
+</form>
+
+</div>
+
+</div>
+
 </html>
