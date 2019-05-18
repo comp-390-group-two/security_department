@@ -11,6 +11,7 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body style ="background-color: #006666;">
+<h1></h1>
 	<form  class="StudentForm" action="guardLoginServlet" method="get"> 
  <div class="container">
  	<div class="row">
@@ -23,11 +24,13 @@
  					<br>
  					<h6>Please enter your Security ID and Password</h6>
  					<br>
+ 					
  					<div class="form-group">
  						<label class="control-label" for ="username">Security ID</label>
  					    <input type="text" name="security_id" class="form-control" placeholder="Security ID">
 
  					</div>
+ 					
  					<div class="form-group">
  						<label class="control-label" for ="password">Password</label>
  					    <input type="password" name="password" class="form-control" placeholder="Password">
@@ -50,6 +53,6 @@
  	                              
 
 </form>
-	
+	<a href="RegisterGuard.jsp"> Back to Register Details</a>
 </body>
 </html>

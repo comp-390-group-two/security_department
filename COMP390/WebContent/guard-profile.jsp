@@ -52,6 +52,24 @@
 		
 		                            </select>
 		                    </div>
+		                    
+   <!-- Prompts User to input time -->
+		                    
+		<label for="appt">Select Time in</label>
+
+					<input type="time" id="appt" name="appt"
+					       min="9:00" max="18:00" required>
+					
+					<span class="note"></span>
+		<label for="appt">Select Time </label>
+<!-- prints out the current time -->
+<p>Date/Time: <span id="datetime"></span></p>
+
+<script>
+var dt = new Date();
+document.getElementById("datetime").innerHTML = dt.toLocaleTimeString();
+</script>
+<!-- end of script -->
 		                <div class="form-group">
 		                        <label for="assign_duty">Duty</label>
 		                        <textarea placeholder="Enter comment"
