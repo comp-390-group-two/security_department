@@ -36,6 +36,7 @@ public class guardLoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+	
 		String sec_id=request.getParameter("security_id");
 		String password=request.getParameter("password");
 		
@@ -43,10 +44,15 @@ public class guardLoginServlet extends HttpServlet {
 			
 			if(guard.check(sec_id,password)) {
 				HttpSession session=request.getSession();
+				
 				session.setAttribute("userOne",sec_id);
-				
-				response.sendRedirect("guard-profile.jsp");
-				
+				if(sec_id.equals("NVA-050") || sec_id.equals("NVA-051") ||  sec_id.equals("NVA-052")|| sec_id.equals("NVA-053"))
+					
+						
+					response.sendRedirect("AdminDashBoard.jsp");
+				else {
+					response.sendRedirect("GuardDashBoard.jsp");
+				}
 				
 			}
 			else {
@@ -69,14 +75,14 @@ public class guardLoginServlet extends HttpServlet {
 		String last_name=request.getParameter("last_name");
 		String password= request.getParameter("password");
 		String department=request.getParameter("department");
-		String duty = request.getParameter("duty");
+		String role = request.getParameter("role");
 		
 	//	securityDB seci = new securityDB();
 		
 		//seci.postDb(one, two, three, four, five);
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			
 			Connection myConn =DriverManager.getConnection("jdbc:mysql://localhost:3306/security","root","gerry");
 			String sql="INSERT INTO guards VALUES (?,?,?,?,?,?) ";
@@ -88,7 +94,7 @@ public class guardLoginServlet extends HttpServlet {
 			myStmt.setString(3, last_name);
 			myStmt.setString(4, password);
 			myStmt.setString(5, department);
-			myStmt.setString(6, duty);
+			myStmt.setString(6, role);
 			
 			myStmt.executeUpdate();
 			
@@ -101,6 +107,7 @@ public class guardLoginServlet extends HttpServlet {
 		/*RequestDispatcher rd = request.getRequestDispatcher("WelcomeStudentPage.jsp");
 		   rd.forward(request, response);
 		   */
+		
 		response.sendRedirect("security-login.jsp");
 	}
 

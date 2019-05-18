@@ -21,6 +21,7 @@ public class GuardDAO {
   			stmt.setString(1,sec_id);
   			stmt.setString(2,password);
   			
+  			
   			ResultSet rs= stmt.executeQuery();
   			
   			if(rs.next()) {

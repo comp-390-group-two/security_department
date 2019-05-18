@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import logins.LoginDAO;
+
 /**
  * Servlet implementation class ll
  */
@@ -16,20 +18,20 @@ public class ll extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String one=request.getParameter("username");
-		String two=request.getParameter("password");
+		String one=request.getParameter("password");
+		String two=request.getParameter("username");
 
-    loginDAO firstObject=new loginDAO();
+    LoginDAO firstObject=new LoginDAO();
     
     
    
 		
-		if( firstObject.check(one,two)) {
+		if( firstObject.check(two,one)) {
 		
 			HttpSession session=request.getSession();
 			session.setAttribute("userOne",one);
 			
-			response.sendRedirect("WelcomeStudentPage.jsp");
+			response.sendRedirect("StudentHomePage.jsp");
 			
 			
 		}

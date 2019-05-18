@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Student Registration Form</title>
+</head>
+<body>
+<form action="student-response.jsp">
+	First Name:
+	<input type="text" name="firstName"/>
+	<br/><br/>
+	Last Name:
+	<input type="text" name="lastName"/>
+	
+		
+	<br/><br/>
+<!-- Drop Down -->
+	Country:
+	<select name="country">
+		<option>Kenya</option>
+		<option>Tanzania</option>
+		<option>Uganda</option>
+		<option>South Sudan</option>
+		<option>Ethiopia</option>
+	</select>
+<!-- Check Box -->
+<br/><br/>
+	Favorite Programming Language<br/>
+	<input type="checkbox" name="favLanguage" value="PHP"/>PHP
+	<input type="checkbox" name="favLanguage" value="Java"/>Java
+	<input type="checkbox" name="favLanguage" value="Python"/>Python
+	<input type="checkbox" name="favLanguage" value="JavaScript"/>JavaScript
+	
+	<br/><br/>
+	<input type="submit" value="Submit"/>
+</form>
+</body>
+</html>
