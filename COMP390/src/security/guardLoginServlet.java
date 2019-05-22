@@ -98,7 +98,7 @@ public class guardLoginServlet extends HttpServlet {
 			
 			myStmt.executeUpdate();
 			
-			System.out.println("successfuly inserted");
+			System.out.println("Security successfuly inserted");
 			myStmt.close();
 			myConn.close();
  		}catch(Exception exc) {

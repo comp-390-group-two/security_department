@@ -46,7 +46,7 @@ response.setHeader("Pragma", "no-cache");
 							
 						</div>
 						
-      			 		<form action="register_student" method="post">
+      			 		<form action="regStudentServlet" method="post">
 							<div  class="modal-body">
 						
 								<div class="form-group">
