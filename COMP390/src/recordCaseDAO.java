@@ -20,7 +20,7 @@ public class recordCaseDAO {
 		try {
 			
 			
-			 con=DriverManager.getConnection(url,username,password);
+			con=DriverManager.getConnection(url,username,password);
 			stmt=con.createStatement();
 			System.out.println("Connection Sucessful");
 			

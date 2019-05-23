@@ -34,6 +34,44 @@
 
 </div>
 
+
+
 </div>
+<div class="col-sm-3">
+
+
+<form action="SecurityOfficer">
+
+<input type="submit" value="SECURITY OFFICER">
+
+
+</form>
+
+</div>
+
+
+
+<div class="col-sm-3">
+
+
+<form action="OperationalOfficer">
+
+<input type="submit" value="OPERATIONAL OFFICER">
+
+
+</form>
+
+</div>
+
+<div class="col-sm-3">
+
+
+<form action="OperationalOfficer">
+
+<input type="submit" value="Investigation Officer">
+
+
+</form>
+
 
 </html>

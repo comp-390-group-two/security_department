@@ -19,7 +19,7 @@ public class reasonDAO {
 		try {
 			
 			
-			 con=DriverManager.getConnection(url,username,password);
+			con=DriverManager.getConnection(url,username,password);
 			stmt=con.createStatement();
 			System.out.println("Connection Sucessful");
 			
@@ -32,10 +32,8 @@ public class reasonDAO {
 	
 	public void insertToDB(String QueryInsert) {
 		
-		
-	try {
-		
 		ConnecttoDB();
+	try {
 		
 		stmt.executeUpdate(QueryInsert);
 		System.out.println(" close to Inserted");

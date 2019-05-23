@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="css1.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>StudentsLogin</title>
 </head>
 <body style ="background-color: #006666;"><br>
@@ -43,7 +44,7 @@
  					</div>
  					
  					<div class="pull-center">
- 					<button type="submit" class="btn btn-primary">SUBMIT</button>
+ 					<button type="submit" class="btn btn-primary"><i class="fa fa-lock"></i>&nbsp;LOGIN</button>
  					
  					</div>
  				</div>

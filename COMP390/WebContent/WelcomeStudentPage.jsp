@@ -1,3 +1,6 @@
+<%@ page import ="java.sql.*" %>
+<%@ page import ="javax.sql.*" %>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -30,23 +33,34 @@ response.setHeader("Pragma", "no-cache");
 
 if (session.getAttribute("userOne")==null){
 	response.sendRedirect("login.jsp");
+
 }
 
-
-	
-
-
 %>
+
+
+
 <div class="row">
 <div class="col-md-4">
 
+
 <img src="images/download.jpg"  height="100px" width="100px ">
+
 
 </div>
 
 <div class="col-md-8">
 <h2 style="color:#ffffff">EGERTON UNIVERSITY</h2>
 <h3 style="color:#ffffff">EGERTON UNIVERSITY SECURITY DEPARTMENT</h3>
+
+
+<form action="Logout">
+
+<input style="float:right " type="submit" value="LOGOUT">
+
+
+</form>
+
 </div>
 </div>
 
@@ -87,11 +101,8 @@ if (session.getAttribute("userOne")==null){
 
  								</div>
  								
- 								<div class="form-group">
- 									<label style="color:#ffffff;class="control-label" for ="your_regno">YOUR REGNO</label>
- 					    			<input type="text" name="your_regno" class="form-control" placeholder="REGNO">
-
- 								</div>
+ 								
+ 								
  								
  								<div class="form-group">
 									
@@ -110,21 +121,18 @@ if (session.getAttribute("userOne")==null){
 									
 									<label style="color:#ffffff; class="control-label" for ="specifictime_of_occurance">What time did it happen</label>
  					   			 	
- 					   			 	
+ 					   			 	<input  type="time" class="form-control" id="specifictime_of_occurance" name=specifictime_of_occurance>
  
- 					   			 	<select class="form-control" id="specifictime_of_occurance" name=specifictime_of_occurance>
- 					   			 	<option>DAYTIME</option>
- 					   			 	<option>NIGHT</option>
  					   			 	
- 					   			 	</select>
 								</div>
  								
 						
 							
 								<div class="form-group">
 									
-									<label style="color:#ffffff"class="control-label" for ="occurance">What happened</label>
- 					   			 	<input type="text" name="occurance" class="form-control" >
+									
+									<textarea name="occurance" rows="4" cols="85" placeholder="What happened"></textarea>
+ 					   			 	
 								</div>
 
 								<div class="form-group">
@@ -134,11 +142,7 @@ if (session.getAttribute("userOne")==null){
 								</div>
 								
 
-								<div class="form-group">
-									
-									<label style="color:#ffffff;class="control-label" for ="reason_of_accused">Why think of the accused</label>
- 					   			 	<input type="text" name="reason_of_accused" class="form-control" placeholder="Reason_of_accused">
-								</div>
+								
  
  								
  								
@@ -191,11 +195,7 @@ if (session.getAttribute("userOne")==null){
  		</select>
  		
  		
- 		<div class="form-group">
- 									<label style="color:#ffffff;class="control-label" for ="your_regno">YOUR REGNO</label>
- 					    			<input type="text" name="your_regno" class="form-control" placeholder="REGNO">
-
- 								</div>
+ 	
 	</div>
 	<div class="pull-center">
 
@@ -226,7 +226,7 @@ if (session.getAttribute("userOne")==null){
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Cases submitted</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -237,50 +237,67 @@ if (session.getAttribute("userOne")==null){
   <thead>
     <tr>
       
-      <th scope="col">Date_Of_Occurance</th>
+      <th scope="col">Case ID</th>
      
-      <th scope="col">description</th>
-       <th scope="col">person_involded</th>
-       <th scope="col">reason_of_accused</th>
+      <th scope="col">Date Submitted</th>
+       <th scope="col">Description</th>
+       <th scope="col">Person Involved</th>
+       <th scope="col">Status</th>
         
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <th scope="row"></th>
-      
-      <td></td>
-     
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row"></th>
-      
-      <td></td>
-      <td></td>
-     
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row"></th>
-      <td></td>
-      <td></td>
-    
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
+  
+  <%
+ try{
+	 
+	 String url="jdbc:mysql://localhost:3306/COMP390";
+		String username="root";
+		String password="";
+		
+		
+		Connection conn=null;
+		Statement stmt=null;
+		ResultSet res=null;
+		
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		 conn=DriverManager.getConnection(url,username,password);
+		stmt=conn.createStatement();
+		String z=(String)session.getAttribute("userOne");
+		String data="SELECT * from complains where your_regno='"+z+"'";
+		res=stmt.executeQuery(data);
+		
+		
+		while(res.next()==true ){
+	 
+ 
+ 
+  %>
+ <tbody>
+ 	 <tr>
+ 	 	<td><%=res.getString(1) %></td>
+	   	<td><%=res.getString(2) %></td>
+	 
+	    <td><%=res.getString(6) %></td>
+	     <td><%=res.getString(7) %></td>
+	     <td style="color:red">pending.</td>
+	    
+         
+  
+  		</tr>
   </tbody>
+  <%
+	}
+	}catch(Exception ex){
+		out.println("error1");
+	}finally{
+		
+	}
+  
+  %> 
 </table>
       
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+     
     </div>
   </div>
 </div>
@@ -294,12 +311,7 @@ if (session.getAttribute("userOne")==null){
 <div class="col-sm-3">
 
 
-<form action="Logout">
 
-<input type="submit" value="LOGOUT">
-
-
-</form>
 
 </div>
 

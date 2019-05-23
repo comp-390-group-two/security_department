@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import logins.reasonDAO;
+import logins.registerStudentsDAO;
 
 /**
  * Servlet implementation class reason
@@ -28,23 +30,24 @@ public class reason extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String regno=request.getParameter("your_regno");
+		
 		String reason=request.getParameter("reason");
 		
+		  HttpSession session=request.getSession();
+		   String your_regno=(String)session.getAttribute("userOne");
 		
 		
+			reasonDAO one=new reasonDAO();
 		
-		reasonDAO reason1=new reasonDAO();
-		
-		if(regno.equals(null)||regno==""||reason.equals(null)||reason=="") {
+		if(reason.equals(null)||reason=="") {
 			
 			request.setAttribute("Message","ALL FIELDS ARE MANDATORY WHEN CLEARING");
 			getServletContext().getRequestDispatcher("/WelcomeStudentPage.jsp").forward(request,response);
 		}
 		else {
-			String sql="INSERT INTO Clearance(regno,Reason_of_clearance) Values('"+regno+"','"+reason+"')";
+			String sql="INSERT INTO Clearance(regno,Reason_of_clearance) Values('"+your_regno+"','"+reason+"')";
 			
-			reason1.insertToDB(sql);
+			one.insertToDB(sql);
 			
 			request.setAttribute("Message","CLEARANCE REQUEST RECEIVED");
 			getServletContext().getRequestDispatcher("/WelcomeStudentPage.jsp").forward(request,response);
