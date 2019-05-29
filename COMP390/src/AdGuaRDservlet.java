@@ -56,7 +56,7 @@ public class AdGuaRDservlet extends HttpServlet {
 	if(date==""||date.equals(null)||ssn==""||ssn.equals(null)||name==""||name.equals(null)||phoneno==""||phoneno.equals(null)) {
 		
 		request.setAttribute("Message","ALL FIELDS ARE MANDATORY .REGISTRATION FAILED");
-		getServletContext().getRequestDispatcher("/RegistrationOfGuards.jsp").forward(request,response);
+		getServletContext().getRequestDispatcher("/OperationalDashboard.jsp").forward(request,response);
 		
 	}
 	

@@ -45,7 +45,7 @@
  					
  					<div class="pull-center">
  					<button type="submit" class="btn btn-primary"><i class="fa fa-lock"></i>&nbsp;LOGIN</button>
- 					
+ 					<a href="index.jsp" class="btn btn-primary">&nbsp;BACK</a>
  					</div>
  				</div>
  			

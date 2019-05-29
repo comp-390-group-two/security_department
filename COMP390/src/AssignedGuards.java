@@ -9,6 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import logins.reasonDAO;
 
 /**
  * Servlet implementation class AssignedGuards
@@ -51,17 +54,29 @@ public class AssignedGuards extends HttpServlet {
 		
 		
 		if(name==""||name.equals(null)||ssn ==""||ssn.equals(null)||phone_no.equals(null)||phone_no==""||place.equals(null)||place==""||date.equals(null)||date==""||time_from.equals(null)||time_from==""||time_to==""||time_to.equals(null)) {
-			request.setAttribute("Message","ALL FIELDS ARE MANDATORY .ASSIGNMNET FAILED");
+			request.setAttribute("Message","ALL FIELDS ARE MANDATORY .ASSIGNMNENT FAILED");
 			getServletContext().getRequestDispatcher("/OperationalDashboard.jsp").forward(request,response);
 			
 		}
-		else if (date.compareTo(two.toString())<0){
+		else if (date.compareTo(two.toString())!=0){
 			
-			request.setAttribute("Message","enter date today or coming days :Registration failed");
+			request.setAttribute("Message","enter date today :FAILED TO ASSIGN GUARD");
 			getServletContext().getRequestDispatcher("/OperationalDashboard.jsp").forward(request,response);
 			
 		}
 		else {
+			
+			reasonDAO one_GUARD_assigned=new reasonDAO();
+			
+			HttpSession session=request.getSession();
+			String officer=(String)session.getAttribute("officer");
+		
+			System.out.println(officer);
+			String sql;
+			sql= "INSERT INTO assigned (name, ssn, phoneno, place, date, time_from, time_to, assigned_by ) VALUES('"+name+"','"+ssn+"','"+phone_no+"','"+place+"','"+date+"','"+time_from+"','"+time_to+"','"+officer+"')";
+			
+			one_GUARD_assigned.insertToDB(sql);
+			
 			getServletContext().getRequestDispatcher("/OperationalDashboard.jsp").forward(request,response);
 			
 			

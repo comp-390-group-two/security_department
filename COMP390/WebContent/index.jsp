@@ -66,12 +66,6 @@
 <div class="col-sm-3">
 
 
-<form action="OperationalOfficer">
-
-<input type="submit" value="Investigation Officer">
-
-
-</form>
 
 
 </html>

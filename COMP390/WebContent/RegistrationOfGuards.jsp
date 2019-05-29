@@ -30,6 +30,12 @@
 <h3 >EGERTON UNIVERSITY SECURITY DEPARTMENT</h3>
 </div>
 </div>
+<div class="modal fade" id="mymodal2">
+<div class="modal-dialog"> 
+<div class="modal-header">
+</div>
+
+<div class="modal-body">
 
  <form action="AdGuaRDservlet" method="post">
 <div class="container " style="width:40%">
@@ -86,8 +92,13 @@
 
 </form>
 
-			
-			
+	</div>	
+	
+	<div class="modal-footer">
+	
+	</div>
+	</div>
+	</div>		
 			  
 			  
 

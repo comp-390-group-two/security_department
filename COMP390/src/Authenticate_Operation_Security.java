@@ -47,7 +47,7 @@ public class Authenticate_Operation_Security extends HttpServlet {
 			HttpSession session=request.getSession();
 			session.setAttribute("officer",uname);
 			
-			response.sendRedirect("RegistrationOfGuards.jsp");
+			response.sendRedirect("OperationalDashboard.jsp");
 			
 		}
 		else {

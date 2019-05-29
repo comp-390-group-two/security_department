@@ -34,22 +34,46 @@
 <h3 style="color:"><center>EGERTON UNIVERSITY SECURITY DEPARTMENT</center></h3>
 </div>
 
+
 <div class="row">
 <div class="col-md-4">
 
-<h6>These are the complains submitted </h6>
 
-<table class="table table-striped">
+
+</div>
+<div class="col-md-8">
+
+<form action="Logout">
+
+<input style="float:right " type="submit" value="LOGOUT">
+
+
+</form>
+</div>
+
+</div>
+
+
+<div class="row">
+<div class="col-md-4">
+
+<h3 >COMPLAINTS SUBMITTED </h3>
+<form action="" method="get">
+<input type="text" name="search" class="form-control" placeholder="Search here.by ID.or DATE..." >
+
+
+</form>
+<table class="table  table-bordered table-striped table-hover">
   <thead>
     <tr>
      <th scope="col">caseID</th>
-      <th scope="col">date_of_occurrence</th>
+      <th scope="col">date</th>
       <th scope="col">your_regno</th>
       <th scope="col">venue</th>
-      <th scope="col">specific_time_of_occurance</th>
+      <th scope="col">time</th>
       
       <th scope="col">occurance</th>
-      <th scope="col">people_involved</th>
+      <th scope="col">accused</th>
         
     </tr>
   </thead>
@@ -69,7 +93,19 @@
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
 		 conn=DriverManager.getConnection(url,username,password);
 		stmt=conn.createStatement();
-		String data="SELECT * from complains";
+		String query=request.getParameter("search");
+		String data;
+		
+		
+		if(query!=null){
+			data="SELECT * from complains where number like '%"+query+"%' or date_of_occurrence like '%"+query+"%'";
+		}
+		else{
+			
+			data="SELECT * from complains ";
+			
+		}
+		
 		res=stmt.executeQuery(data);
 		
 		while(res.next()==true ){
@@ -104,7 +140,89 @@
 </table>
 </div>
 
+<div class="col-md-7" style="float:right">
+<h2 style="float:right">GUARDS ASSIGNED </h2>
+<form action="" method="get">
+<input type="text" name="search1" class="form-control" placeholder="Search here......" >
+
+
+</form>
+<table class="table  table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+		<th scope="col">Name</th>
+     
+      <th scope="col"> Phone Number</th>
+      <th scope="col">place</th>
+      <th scope="col">Date</th>
+    <th scope="col"> TIME FROM</th>
+     <th scope="col"> TIME TO</th>
+     
+    </tr>
+  </thead>
+ 
+  <%
+ try{
+	 
+	 String url="jdbc:mysql://localhost:3306/COMP390";
+		String username="root";
+		String password="";
+	 Connection connn;
+	 Statement stmti;
+ 	String q=request.getParameter("search1");
+ 	
+ 	System.out.println(q);
+		
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		connn=DriverManager.getConnection(url,username,password);
+		stmti=connn.createStatement();
+		ResultSet rest;
+		String data3;
+		if(q!=null){
+			data3="SELECT * from assigned where phoneno like '%"+q+"%' or name  like '%"+q+"%' or ssn like '%"+q+"%' or place like '%"+q+"%' or date like '%"+q+"%' or time_from like '%"+q+"%'or time_to like '%"+q+"%'" ;
+		
+			
+		}
+		
+		else{
+			 data3="SELECT * from assigned order by Date";
+		}
+		
+		
+		rest=stmti.executeQuery(data3);
+		
+		while(rest.next()==true ){
+			
+ 
+ 
+  %>
+   <tbody>
+   <tr>
+   
+  		 <td><%=rest.getString (1)%></td>
+		   	
+		   	<td><%=rest.getString(3) %></td>
+		  	 <td><%=rest.getString(4) %></td>
+		  	  <td><%=rest.getString(5) %></td>
+		  	   <td><%=rest.getString(6) %></td>
+		  	     <td><%=rest.getString(7) %></td>
+	 
+</tr>
+  		 </tbody>
+  <%
+	}
+	}catch(Exception ex){
+		out.println("error1");
+	}finally{
+		
+	}
+  
+  %> 
+ 
+</table>
 </div>
+</div>
+
 
 
 	 
