@@ -77,7 +77,7 @@ public class report_case extends HttpServlet {
 			}
 			else {
 				String sql;
-				sql=("INSERT INTO complains(date_of_occurrence,your_regno,venue,specific_time_of_occurance,occurance,people_involved)VALUES('"+date_of_occurance+"','"+your_regno+"','"+ venue+"','"+specifictime_of_occurance+"','"+occurance+"','"+people_involved+"')");
+				sql=("INSERT INTO complains(date_of_occurrence,your_regno,venue,specific_time_of_occurance,occurance,people_involved,Findings, Remarks, Handled_by)VALUES('"+date_of_occurance+"','"+your_regno+"','"+ venue+"','"+specifictime_of_occurance+"','"+occurance+"','"+people_involved+"','"+"','"+"','"+"')");
 				
 				
 				request.setAttribute("yourname",your_regno);

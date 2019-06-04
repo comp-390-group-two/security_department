@@ -47,6 +47,8 @@ public class AdGuaRDservlet extends HttpServlet {
 	String name=request.getParameter("name");
 	
 	System.out.println(phoneno);
+	int z=phoneno.length();
+	System.out.println(z);
 	
   Date today=new Date();
 
@@ -63,11 +65,15 @@ public class AdGuaRDservlet extends HttpServlet {
 	else if (date.compareTo(two.toString())<0) {
 		
 		request.setAttribute("Message","enter date today or coming days :Registration failed");
-		getServletContext().getRequestDispatcher("/RegistrationOfGuards.jsp").forward(request,response);
+		getServletContext().getRequestDispatcher("/OperationalDashboard.jsp").forward(request,response);
 		
 		
 	}
-	
+	else if(phoneno.length()>=10) {
+		request.setAttribute("Message","YOUR PHONE NUMBER IS EXCESS,REGISTRATION FAILED");
+		getServletContext().getRequestDispatcher("/OperationalDashboard.jsp").forward(request,response);
+		
+	}
 	else {
 		
 		reasonDAO one_GUARD=new reasonDAO();

@@ -131,7 +131,7 @@ if (session.getAttribute("userOne")==null){
 								<div class="form-group">
 									
 									
-									<textarea name="occurance" rows="4" cols="85" placeholder="What happened"></textarea>
+									<textarea name="occurance" rows="4" cols="75" placeholder="What happened"></textarea>
  					   			 	
 								</div>
 
@@ -242,7 +242,8 @@ if (session.getAttribute("userOne")==null){
       <th scope="col">Date Submitted</th>
        <th scope="col">Description</th>
        <th scope="col">Person Involved</th>
-       <th scope="col">Status</th>
+       <th scope="col">Findings</th>
+       <th scope="col">Remarks</th>
         
     </tr>
   </thead>
@@ -279,7 +280,8 @@ if (session.getAttribute("userOne")==null){
 	 
 	    <td><%=res.getString(6) %></td>
 	     <td><%=res.getString(7) %></td>
-	     <td style="color:red">pending.</td>
+	     <td><%=res.getString(8) %></td>
+	     <td><%=res.getString(9) %></td>
 	    
          
   
