@@ -1,5 +1,5 @@
 
-
+ import java.sql.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
@@ -64,24 +64,63 @@ public class AssignedGuards extends HttpServlet {
 			getServletContext().getRequestDispatcher("/OperationalDashboard.jsp").forward(request,response);
 			
 		}
-		else {
-			
-			reasonDAO one_GUARD_assigned=new reasonDAO();
-			
-			HttpSession session=request.getSession();
-			String officer=(String)session.getAttribute("officer");
 		
-			System.out.println(officer);
-			String sql;
-			sql= "INSERT INTO assigned (name, ssn, phoneno, place, date, time_from, time_to, assigned_by ) VALUES('"+name+"','"+ssn+"','"+phone_no+"','"+place+"','"+date+"','"+time_from+"','"+time_to+"','"+officer+"')";
+		
+		else  {
+
+			 try{
+				 
+				 String url="jdbc:mysql://localhost:3306/COMP390";
+					String username="root";
+					String password="";
+					 Connection conn;
+					 Statement stmt;
+					 ResultSet res;
+				 
+				 
+					
+					Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+					conn=DriverManager.getConnection(url,username,password);
+					stmt=conn.createStatement();
+					
+					String data3;
+				     data3="SELECT * from assigned where ssn='"+ssn+"'and date='"+date+"'";
+				
+					res=stmt.executeQuery(data3);
+					
+						
+						if(res.next()) {
+							request.setAttribute("Message","THE GUARD IS ALREADY ASSIGNED");
+							getServletContext().getRequestDispatcher("/OperationalDashboard.jsp").forward(request,response);
+							
+						}
+						else {
+							
+							reasonDAO one_GUARD_assigned=new reasonDAO();
+							
+							HttpSession session=request.getSession();
+							String officer=(String)session.getAttribute("officer");
+						
+							System.out.println(officer);
+							String sql;
+							sql= "INSERT INTO assigned (name, ssn, phoneno, place, date, time_from, time_to, assigned_by ) VALUES('"+name+"','"+ssn+"','"+phone_no+"','"+place+"','"+date+"','"+time_from+"','"+time_to+"','"+officer+"')";
+							
+							one_GUARD_assigned.insertToDB(sql);
+							
+							getServletContext().getRequestDispatcher("/GuardsAssigned.jsp").forward(request,response);
+							
+						}
+					
+					
 			
-			one_GUARD_assigned.insertToDB(sql);
-			
-			getServletContext().getRequestDispatcher("/OperationalDashboard.jsp").forward(request,response);
 			
 			
 		}
+			 catch(Exception e) {
+				 
+			 }
 		
 	}
 
+}
 }

@@ -31,6 +31,8 @@ public class ll extends HttpServlet {
 			HttpSession session=request.getSession();
 			session.setAttribute("userOne",two);
 			
+			
+			
 			response.sendRedirect("WelcomeStudentPage.jsp");
 			
 			

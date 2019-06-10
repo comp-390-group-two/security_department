@@ -12,19 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import logins.reasonDAO;
-import logins.registerStudentsDAO;
 
 /**
- * Servlet implementation class AdGuaRDservlet
+ * Servlet implementation class EDIT
  */
-@WebServlet("/AdGuaRDservlet")
-public class AdGuaRDservlet extends HttpServlet {
+@WebServlet("/EDIT")
+public class EDIT extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdGuaRDservlet() {
+    public EDIT() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -62,13 +61,7 @@ public class AdGuaRDservlet extends HttpServlet {
 		
 	}
 	
-	else if (date.compareTo(two.toString())<0) {
-		
-		request.setAttribute("Message","enter date today or coming days :Registration failed");
-		getServletContext().getRequestDispatcher("/OperationalDashboard.jsp").forward(request,response);
-		
-		
-	}
+	
 	else if(phoneno.length()>10||phoneno.length()<10) {
 		request.setAttribute("Message","put 10 numbers,REGISTRATION FAILED");
 		getServletContext().getRequestDispatcher("/OperationalDashboard.jsp").forward(request,response);
@@ -83,7 +76,11 @@ public class AdGuaRDservlet extends HttpServlet {
 	
 		System.out.println(officer);
 		String sql;
-		sql="INSERT INTO guards(REGISTRATION_OFFICER,date,FULL_NAMES,SSNO,PHONE_NUMBER) Values('"+officer+"','"+date+"','"+name+"','"+ssn+"','"+phoneno+"')";
+		sql="update  guards set REGISTRATION_OFFICER='"+officer+"',date='"+date+"',FULL_NAMES='"+name+"',PHONE_NUMBER='"+phoneno+"' where SSNO='"+ssn+"'";
+				
+				
+				
+		//sql="update  guards set (REGISTRATION_OFFICER,date,FULL_NAMES,SSNO,PHONE_NUMBER) Values('"+officer+"','"+date+"','"+name+"','"+ssn+"','"+phoneno+"')";
 		
 		one_GUARD.insertToDB(sql);
 		

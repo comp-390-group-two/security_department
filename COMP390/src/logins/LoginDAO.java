@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.servlet.http.HttpSession;
+
 public class LoginDAO {
 	
 	String sql="select * from students where regno=? and password=?";
@@ -26,7 +28,11 @@ public class LoginDAO {
 			
 			ResultSet rs=st.executeQuery();
 			
+			
+			
+			
 			 if(rs.next()) {
+				
 				 return true;
 			 }
 		} catch (Exception e) {
