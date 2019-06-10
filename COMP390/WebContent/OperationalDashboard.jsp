@@ -5,12 +5,15 @@
 <!DOCTYPE html>
 <html>
 
-<h1 class="text-center">Egerton University Security Department</h1>
-<h1 class="text-center">Security Department</h1>
+<h1 class="text-center" style="color:#ffffff">Egerton University Security Department</h1>
+<h1 class="text-center"style="color:#ffffff">Security Department</h1>
 <div class="row">
 <div class="col-md-4">
 
 <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#mymodal2">ADD NEW  GUARD</button>
+<a href="GuardsAssigned.jsp"><button type="button" class="btn btn-lg btn-primary" ">
+  GUARDS ASSIGNED
+</button></a>
 
 </div>
 <div class="col-md-8">
@@ -34,7 +37,7 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <title>ADD GUARD</title>
 </head>
-<body>
+<body style="background-color:  #006666;">
 
 
 <div class="modal fade" id="mymodal2">
@@ -247,13 +250,13 @@ while (res.next()){
 <div class="row">
 <div class="col-md-4">
 
-<h2>GUARDS DETAILS</h2>
+<center><h2 style="color:#ffffff">GUARDS DETAILS</h2></center>
  <h5 style="color:red"> ${Message} </h5>
   
 
-<table class="table  table-bordered table-striped table-hover">
+<table class="table  table-bordered table-striped table-hover" style="margin-left:300px">
   <thead>
-    <tr>
+    <tr  style="color:#ffffff">
 		<th scope="col">Date</th>
       <th scope="col">Full Name</th>
       <th scope="col">SSN</th>
@@ -266,10 +269,7 @@ while (res.next()){
  
   <%
  try{
-	 
 	
-	
-		
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
 		conn=DriverManager.getConnection(url,username,password);
 		stmt=conn.createStatement();
@@ -291,7 +291,16 @@ while (res.next()){
 	   
 	  <td class="text-center">
 	  
-	    <a href="AssignDuty.jsp?u=<%=res.getString(4) %>" class="btn btn-warning">ASSIGN GUARD</a>
+	    <a href="EditGuards.jsp?u=<%=res.getString(4) %>" class="btn btn-warning">UPDATE</a>
+	  </td>
+	   <td class="text-center">
+	  
+	    <a href="deleteGuards.jsp?d=<%=res.getString(4) %>" class="btn btn-danger">DELETE</a>
+	  </td>
+	  
+	  	   <td class="text-center">
+	  
+	    <a href="AssignDuty.jsp?u=<%=res.getString(4) %>" class="btn btn-primary">ASSIGN GUARD</a>
 	  </td>
        
   		</tr>
@@ -308,82 +317,53 @@ while (res.next()){
  
 </table>
 </div>
-<div class="col-md-7" style="float:right">
-<h2 style="float:CENTER">GUARDS ASSIGNED </h2>
-<form action="" method="get">
-<input type="text" name="search1" class="form-control" placeholder="Search here." >
 
+</div>
 
-</form>
-<table class="table  table-bordered table-striped table-hover">
-  <thead>
-    <tr>
-		<th scope="col">Name</th>
-      <th scope="col">ssn</th>
-      <th scope="col"> Phone Number</th>
-      <th scope="col">place</th>
-      <th scope="col">Date</th>
-    <th scope="col"> TIME FROM</th>
-     <th scope="col"> TIME TO</th>
-     
-    </tr>
-  </thead>
- 
-  <%
- try{
-	 
-	 
-		
-		Class.forName("com.mysql.jdbc.Driver").newInstance();
-		conn=DriverManager.getConnection(url,username,password);
-		stmt=conn.createStatement();
-		
-		String data3;
-		String q=request.getParameter("search1");
-		if(q!=null){
-			data3="SELECT * from assigned where phoneno like '%"+q+"%' or name  like '%"+q+"%' or ssn like '%"+q+"%' or place like '%"+q+"%' or date like '%"+q+"%' or time_from like '%"+q+"%'or time_to like '%"+q+"%'" ;
-		
-			
-		}
-		
-		else{
-			 data3="SELECT * from assigned order by Date";
-		}
-		
+<footer style ="background-color: #222; color:#ffffff" class="site-footer" >
+	<div class="container">
+
 	
-		res=stmt.executeQuery(data3);
+ <div class="row">
+	<div class="col-md-4 ">
+		<adress>
+			Egerton University Security Department<br>
+			P.O.BOX 536,<br>
+			Egerton<br>
+			PHONE NO_07XXXXXXXX
+		</adress>
+	</div>
+
+	<div class="col-md-4 ">
+		<address>
+		Egerton University<br>
+		<i>Transforming Lives Through Quality Education</i><br>
+		NJORO Campus<br>
+		www.egerton.ac.ke
 		
-		
-		while(res.next()==true ){
-			
- 
- 
-  %>
-   <tbody>
-   <tr>
-   
-  		 <td><%=res.getString (1)%></td>
-		   	<td><%=res.getString(2) %></td>
-		   	<td><%=res.getString(3) %></td>
-		  	 <td><%=res.getString(4) %></td>
-		  	  <td><%=res.getString(5) %></td>
-		  	   <td><%=res.getString(6) %></td>
-		  	     <td><%=res.getString(7) %></td>
-	 
-</tr>
-  		 </tbody>
-  <%
-	}
-	}catch(Exception ex){
-		out.println("error1");
-	}finally{
-		
-	}
-  
-  %> 
- 
-</table>
-</div>
-</div>
+		</address>
+	</div>
+	<div class="col-md-4" >
+		 <adress >
+       		Chief Security <br>
+        	Egerton University-Kenya<br>
+        	chiefsecurity@egerton.ac.ke<br>
+		 </adress>
+	</div>
+	</div>
+	<hr>
+	<p>Website information</p>
+	<div class="button-footer">
+	<div class="col-md-8">©SecurityDepartmentEgertonUniverity .2019</div>
+	</div>
+	
+
+   </div>
+
+	</div>
+
+
+
+</footer>
 </body>
 </html>

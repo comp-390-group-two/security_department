@@ -38,9 +38,9 @@
 <div class="row">
 <div class="col-md-4">
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" style="Height:100px;"data-toggle="modal" data-target="#guards">
+<a href="observeguards.jsp"><button type="button" class="btn btn-primary" style="Height:100px;"">
   GUARDS ON DUTY
-</button>
+</button></a>
 
 <!-- Modal -->
 <div class="modal fade" id="guards" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -184,9 +184,11 @@
       
       <th scope="col">occurance</th>
       <th scope="col">accused</th>
-      <th scope="col">Action</th>
+      
       <th scope="col">Findings</th>
       <th scope="col">Remarks</th>
+      
+      <th scope="col">Action</th>
     </tr>
   </thead>
  
@@ -234,16 +236,16 @@
 	    <td><%=res.getString(5) %></td>
 	    <td><%=res.getString(6) %></td>
 	     <td><%=res.getString(7) %></td>
-	     <td>
-	     
-	      <a href="handleCase.jsp?u=<%=res.getString(1) %>" class="btn btn-warning">Handle Case</a>
-	   
-	
-	  </td>
+	    
 	     <td><%=res.getString(8) %></td>
 	     <td><%=res.getString(9) %></td>
 	    
-         
+          <td>
+	     
+	      <a href="handleCase.jsp?u=<%=res.getString(1) %>" class="btn btn-warning">WRITE FINDINGS</a>
+	   
+	
+	  </td>
   
   		</tr>
   		 </tbody>
