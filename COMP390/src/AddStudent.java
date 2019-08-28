@@ -6,43 +6,33 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import logins.LoginDAO;
 
 /**
- * Servlet implementation class ll
+ * Servlet implementation class AddStudent
  */
-@WebServlet("/ll")
-public class ll extends HttpServlet {
+@WebServlet("/AddStudent")
+public class AddStudent extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public AddStudent() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String one=request.getParameter("password");
-		String two=request.getParameter("username");
-
-    LoginDAO firstObject=new LoginDAO();
-    
-    
-   
+		response.sendRedirect("RegisterStudent.jsp");
 		
-		if( firstObject.check(two,one)) {
-		
-			HttpSession session=request.getSession();
-			session.setAttribute("userOne",two);
-			
-			
-			
-			response.sendRedirect("WelcomeStudentPage.jsp");
-			
-			
-		}
-		else {
-			response.sendRedirect("login.jsp");
-		}
 	}
-
-	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
